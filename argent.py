@@ -2,10 +2,10 @@ from argparse import ArgumentParser
 from dotenv import load_dotenv
 from yaml import safe_load
 
+from learn import hf_pipeline
 
 __ENV_PATH = "config/.env"
 __CONFIG_PATH = "config/argent_base_cfg.yml"
-
 
 
 def __init__():
@@ -19,6 +19,8 @@ def __init__():
     load_dotenv(__ENV_PATH)
     cfg = safe_load(open(args.config, 'r'))
 
+    llm = hf_pipeline.create_hf_pipeline(cfg["model"])
+    print(llm.invoke("A huggingface pipeline is... "))
 
 
 if __name__ == "__main__":

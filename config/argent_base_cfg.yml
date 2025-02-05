@@ -1,5 +1,6 @@
 # model options define the LLM model; which to use, how it's initialized, etc.
 model:
   name: "google/gemma-2-2b-it"
-  pipeline_args:
-    torch_dtype: "float16"
+  quant_config:
+    load_in_4bit: True
+    bnb_4bit_compute_dtype: "float16"
